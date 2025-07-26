@@ -224,6 +224,14 @@ app.get('/api/products', (req, res) => {
     res.json(results);
   });
 });
+app.get('/api/user', (req, res) => {
+  db.query('SELECT * FROM user_info_1', (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    res.json(results);
+  });
+});
 
 // Set up your PORT from env
 const PORT = process.env.PORT || 5000;
