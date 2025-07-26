@@ -216,6 +216,14 @@ app.post('/api/change-username', (req, res) => {
 app.get('/', (req, res) => {
   res.send('API is running...');
 });
+app.get('/api/products', (req, res) => {
+  db.query('SELECT * FROM `project details`', (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    res.json(results);
+  });
+});
 
 // Set up your PORT from env
 const PORT = process.env.PORT || 5000;
