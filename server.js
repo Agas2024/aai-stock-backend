@@ -167,7 +167,7 @@ app.put('/api/update-product', (req, res) => {
 
 // USER LOGIN
 
-app.post('/api/login', (req, res) => {
+app.post('/api/login-test', (req, res) => {
   const { username, password } = req.body;
   const sql = 'SELECT * FROM user_info_1 WHERE username = ? AND password = ?';
   
