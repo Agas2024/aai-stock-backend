@@ -4,7 +4,7 @@ const mysql = require('mysql2');
 
 
 const app = express();
-const PORT = process.env.DB_PORT;
+
 
 app.use(cors());
 app.use(express.json());
@@ -13,11 +13,13 @@ app.use(express.json());
 // MySQL connection
 require('dotenv').config(); // add this at top
 
+// MySQL connection using env variables
 const db = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
+  port: parseInt(process.env.DB_PORT, 10), // ensure port is a number
 });
 
 
@@ -211,6 +213,14 @@ app.post('/api/change-username', (req, res) => {
   });
 });
 
+app.get('/', (req, res) => {
+  res.send('API is running...');
+});
+
+// Set up your PORT from env
+const PORT = process.env.PORT || 5000;
+
 app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);
 });
+
