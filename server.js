@@ -164,7 +164,7 @@ app.put('/api/update-product', (req, res) => {
 app.post('/api/login', (req, res) => {
   const { username, password } = req.body;
   const sql = 'SELECT * FROM user_info_1 WHERE username = ? AND password = ?';
-
+  console.log('Login attempt:', username, password); 
   db.query(sql, [username, password], (err, results) => {
     if (err) return res.status(500).json({ error: 'Database error' });
 
