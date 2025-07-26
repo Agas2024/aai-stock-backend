@@ -6,12 +6,7 @@ const mysql = require('mysql2');
 const app = express();
 
 
-const allowedOrigins = ['https://aai-stock-monitoring-ojjcgdnjk-stock-monitoring.vercel.app/']; // replace with actual domain
-app.use(cors({
-  origin: allowedOrigins,
-  credentials: true,
-}));
-
+app.use(cors());
 app.use(express.json());
 
 
@@ -167,7 +162,7 @@ app.put('/api/update-product', (req, res) => {
 
 // USER LOGIN
 
-app.post('/api/login-test', (req, res) => {
+app.post('/api/login', (req, res) => {
   const { username, password } = req.body;
   const sql = 'SELECT * FROM user_info_1 WHERE username = ? AND password = ?';
   
